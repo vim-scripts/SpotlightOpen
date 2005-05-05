@@ -1,0 +1,36 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1275
+
+This is based on Ciaran McCreesh's locateopen script. I modified it so it uses Spotlight instead of slocate. So this script will only run on MacOS 10.4 or later.
+
+It allows you to open files in VIM by just typing (part of) the filename. You don't have to type their full path. If there's more than one match, you can choose a file from a menu.
+
+Usage is the same, except the command names have "Spot" in place of "Locate":
+
+:SpotEdit <file>
+:SpotSplit <file>
+:SpotSource <file>
+:SpotRead <file>
+
+
+User-definable options (see script header):
+
+- You can choose whether the typed name must match the filename exactly, its beginning, or any part of the filename.
+
+- You can limit the search to a certain filetype.
+
+
+I use the following in my .vimrc:
+
+let g:spotlightopen_match = 1
+let g:spotlightopen_limitftype = "public.plain-text"
+
+which means that it will look for any plain text files beginning with a given name. So for example
+
+:SpotEdit PrefsW
+
+would find PrefsWindow.c and PrefsWindow.h - but not PrefsWindow.o (since it's a binary file and not plain text).
+
+
+Todo:
+
+- Option to exclude matches from the trash...
